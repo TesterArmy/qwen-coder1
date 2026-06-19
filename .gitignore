@@ -1,0 +1,23 @@
+```
+# Dependencies
+node_modules/
+
+# Logs
+*.log
+server.log
+
+# Database
+server/bike-rental.db
+
+# Environment variables
+.env
+.env.local
+*.env.*
+
+# Build artifacts (from better-sqlite3)
+build/
+
+# Package lock file
+package-lock.json
+
+```

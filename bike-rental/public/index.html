@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BikeRental - Rent Your Perfect Bike</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="logo">
+                <h1>🚴 BikeRental</h1>
+            </div>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#bikes">Bikes</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#contact">Contact</a></li>
+                <li><a href="/admin" class="btn-admin">Admin Dashboard</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1>Ride Your Adventure</h1>
+            <p>Premium bikes for rent at unbeatable prices</p>
+            <a href="#bikes" class="btn-primary">Browse Bikes</a>
+        </div>
+    </section>
+
+    <!-- Bikes Section -->
+    <section id="bikes" class="bikes-section">
+        <div class="container">
+            <h2>Our Fleet</h2>
+            <p class="section-subtitle">Choose from our wide range of premium bikes</p>
+            
+            <div class="filter-buttons">
+                <button class="filter-btn active" data-filter="all">All Bikes</button>
+                <button class="filter-btn" data-filter="Mountain">Mountain</button>
+                <button class="filter-btn" data-filter="Road">Road</button>
+                <button class="filter-btn" data-filter="City">City</button>
+                <button class="filter-btn" data-filter="Electric">Electric</button>
+            </div>
+
+            <div id="bikes-container" class="bikes-grid">
+                <!-- Bikes will be loaded here -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Booking Modal -->
+    <div id="booking-modal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Book Your Bike</h2>
+            <div id="selected-bike-info"></div>
+            <form id="booking-form">
+                <input type="hidden" id="bike-id">
+                
+                <div class="form-group">
+                    <label for="customer-name">Full Name *</label>
+                    <input type="text" id="customer-name" required placeholder="John Doe">
+                </div>
+
+                <div class="form-group">
+                    <label for="customer-email">Email *</label>
+                    <input type="email" id="customer-email" required placeholder="john@example.com">
+                </div>
+
+                <div class="form-group">
+                    <label for="customer-phone">Phone Number</label>
+                    <input type="tel" id="customer-phone" placeholder="+1 234 567 8900">
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="start-date">Start Date & Time *</label>
+                        <input type="datetime-local" id="start-date" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="end-date">End Date & Time *</label>
+                        <input type="datetime-local" id="end-date" required>
+                    </div>
+                </div>
+
+                <div class="price-summary">
+                    <h3>Price Summary</h3>
+                    <div class="summary-row">
+                        <span>Duration:</span>
+                        <span id="duration-display">-</span>
+                    </div>
+                    <div class="summary-row">
+                        <span>Rate per hour:</span>
+                        <span id="rate-display">$0.00</span>
+                    </div>
+                    <div class="summary-row total">
+                        <span>Total Price:</span>
+                        <span id="total-display">$0.00</span>
+                    </div>
+                </div>
+
+                <button type="submit" class="btn-primary btn-full">Confirm Booking</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Success Modal -->
+    <div id="success-modal" class="modal">
+        <div class="modal-content success-content">
+            <span class="close" onclick="closeSuccessModal()">&times;</span>
+            <div class="success-icon">✓</div>
+            <h2>Booking Confirmed!</h2>
+            <p>Your bike has been successfully booked.</p>
+            <div id="booking-details"></div>
+            <button class="btn-primary" onclick="closeSuccessModal()">Continue Browsing</button>
+        </div>
+    </div>
+
+    <!-- About Section -->
+    <section id="about" class="about-section">
+        <div class="container">
+            <h2>About Us</h2>
+            <div class="about-content">
+                <div class="about-card">
+                    <div class="icon">🚴</div>
+                    <h3>Premium Bikes</h3>
+                    <p>We offer only the best quality bikes from top manufacturers.</p>
+                </div>
+                <div class="about-card">
+                    <div class="icon">💰</div>
+                    <h3>Best Prices</h3>
+                    <p>Competitive pricing with no hidden fees or charges.</p>
+                </div>
+                <div class="about-card">
+                    <div class="icon">🛡️</div>
+                    <h3>Fully Insured</h3>
+                    <p>All rentals come with comprehensive insurance coverage.</p>
+                </div>
+                <div class="about-card">
+                    <div class="icon">📍</div>
+                    <h3>Easy Pickup</h3>
+                    <p>Convenient locations and flexible pickup times.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact-section">
+        <div class="container">
+            <h2>Contact Us</h2>
+            <div class="contact-info">
+                <div class="contact-item">
+                    <h3>📍 Location</h3>
+                    <p>123 Bike Street, Cycling City, CC 12345</p>
+                </div>
+                <div class="contact-item">
+                    <h3>📞 Phone</h3>
+                    <p>+1 (555) 123-4567</p>
+                </div>
+                <div class="contact-item">
+                    <h3>✉️ Email</h3>
+                    <p>info@bikerental.com</p>
+                </div>
+                <div class="contact-item">
+                    <h3>🕐 Hours</h3>
+                    <p>Mon-Sun: 8:00 AM - 8:00 PM</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 BikeRental. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="main.js"></script>
+</body>
+</html>
